@@ -9,26 +9,42 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
 
+#  Origin way
 #  # Returns the hash digest of the given string.
 #  def User.digest(string)
 #    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : :BCrypt::Engine.cost
 #    BCrypt::Password.create(string, cost: cost)
 #  end
 #
-#  # Return a random token.
+#  # Returns a random token.
 #  def User.new_token
 #    SecureRandom.urlsafe_base64
 #  end
 
-  # Returns the hash digest of the given string.
-  def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : :BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
+#  Way 1 in exercise 8.1
+#  # Returns the hash digest of the given string.
+#  def self.digest(string)
+#    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : :BCrypt::Engine.cost
+#    BCrypt::Password.create(string, cost: cost)
+#  end
+#
+#  # Returns a random token.
+#  def self.new_token
+#    SecureRandom.urlsafe_base64
+#  end
 
-  # Return a random token.
-  def self.new_token
-    SecureRandom.urlsafe_base64
+# Way 2 in exercise 8.2
+  class << self
+    # Returns the hash digest of the given string.
+    def digest(string)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : :BCrypt::Engine.cost
+      BCrypt::Password.create(string, cost: cost)
+    end
+
+    #Returns a random token.
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
   end
 
   # Remembers a user in the database for use in persistent sessions.
