@@ -2,3 +2,8 @@ fsuser:
   name: first_user
   email: fs@gmail.com
   password_digest: <%= User.digest('password') %>
+
+archer:
+  name: Archer
+  email: duchess@example.gov
+  password_digest: <%= User.digest('password') %>
