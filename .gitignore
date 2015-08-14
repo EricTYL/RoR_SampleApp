@@ -29,3 +29,6 @@
 /config/initializers/filter_parameter_logging.rb
 /config/initializers/mime_types.rb
 /config/initializers/wrap_parameters.rb
+
+# Ignore uploaded test images.
+/public/uploads
