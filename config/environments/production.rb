@@ -70,8 +70,8 @@ Rails.application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "gmail.com",
-    :user_name            => Rails.application.secrets.gmail_user,
-    :password             => Rails.application.secrets.gmail_password,
+    :user_name            => ENV['sender_name']
+    :password             => ENV['sender_password']
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
@@ -87,4 +87,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Configurate secret key base.
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
 end
