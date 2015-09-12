@@ -10,12 +10,21 @@ User.create!(name:  "Example User",
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
-  User.create!(name:  name,
-               email: email,
-               password:              password,
-               password_confirmation: password,
-               activated: true,
-               activated_at: Time.zone.now)
+  p1 = "ppp123"
+  if n + 1 > 3
+    User.create!(name:  name,
+                 email: email,
+                 password:              password,
+                 password_confirmation: password,
+                 activated: true,
+                 activated_at: Time.zone.now)
+  else
+    User.create!(name:  name,
+                 email: email,
+                 password:              p1,
+                 password_confirmation: p1,
+                 activated: true,
+                 activated_at: Time.zone.now)
 end
 
 users = User.order(:created_at).take(6)
