@@ -11,7 +11,8 @@ User.create!(name:  "Example User",
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
   p1 = "ppp123"
-  if n + 1 > 3
+  if n > 2
+    puts email
     User.create!(name:  name,
                  email: email,
                  password:              password,
@@ -19,12 +20,14 @@ User.create!(name:  "Example User",
                  activated: true,
                  activated_at: Time.zone.now)
   else
+    puts email, p1
     User.create!(name:  name,
                  email: email,
                  password:              p1,
                  password_confirmation: p1,
                  activated: true,
                  activated_at: Time.zone.now)
+  end
 end
 
 users = User.order(:created_at).take(6)
